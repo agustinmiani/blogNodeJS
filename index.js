@@ -110,6 +110,17 @@ app.get('/leerMas:id', function (req, res) {
     var stream = mu.compileAndRender('noticiaIndividual.html', {title: page.title, noticia: noticia});
     stream.pipe(res);
 });
+
+app.post('/agregarComentario:id', function(req,res){
+    mu.clearCache();
+    var post = req.params.id;
+    noticiasService.agregarComentario(post, req.body);
+    var noticia = noticiasService.obtenerNoticiaEspecifica(post);
+    var stream = mu.compileAndRender('noticiaIndividual.html', {title: page.title, noticia: noticia});
+    stream.pipe(res);
+
+});
+
 //
 
 // app.use(function(req, res, next){

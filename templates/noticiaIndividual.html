@@ -57,8 +57,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
 						 <ul class="nav navbar-nav">
-							<li class="hvr-bounce-to-bottom active"><a href="/">Home</a></li>
-							 <li class="hvr-bounce-to-bottom"><a href="/post/ultimo">Obtener Ultimo</a></li>
+							<li class="hvr-bounce-to-bottom"><a href="/">Home</a></li>
+							 <li class="hvr-bounce-to-bottom active"><a href="/post/ultimo">Obtener Ultimo</a></li>
 							<li class="hvr-bounce-to-bottom"><a href="/insertar">Cargar Noticia</a></li>
 							<li class="hvr-bounce-to-bottom"><a href="Pages.html">Pages</a></li>
 							<li class="hvr-bounce-to-bottom"><a href="contact.html">Contact Us</a></li>
@@ -97,19 +97,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="blog">
 				<div class="blog-left">
 					<div class="blog-left-grid">
-						{{#noticias}}
 						<div class="blog-left-grid-left">
-							<h3><a href="single.html">{{titulo}}</a></h3>
+							<h3><a href="single.html">{{noticia.titulo}}</a></h3>
 						</div>
 						<div class="clearfix"> </div>
-						<a href="single.html"><img src="{{linkImagen}}" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img src="{{noticia.linkImagen}}" alt=" " class="img-responsive" /></a>
 						<!--<a href="single.html"><img src="images/4.jpg" alt=" " class="img-responsive" /></a>-->
-						<p class="para"> {{contenido}}</p>
+						<p class="para"> {{noticia.contenido}}</p>
+						<p class="para"> {{noticia.extra}}</p>
 						<div class="rd-mre">
-							<a href="single.html" class="hvr-bounce-to-bottom quod">Read More</a>
 						</div>
 					</div>
-					{{/noticias}}
+					<br>
 							<script type="text/javascript">
 								$(document).ready(function () {
 									$('#horizontalTab').easyResponsiveTabs({
@@ -131,11 +130,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="clearfix"> </div>
 			</div>
+
+		{{#noticia.comentarios}}
+
+		<div class="panel-heading" style="width:300px; height:100px;">
+			<h3 class="panel-title" style="background-color: #337ab7; width:100px; height:20px;">{{titulo}}</h3>
+			<div class="panel-body" >
+			<p class="para"> {{comentario}}</p>
+			</div>
+		</div>
+
+
+		{{/noticia.comentarios}}
 <!-- //blog -->
 	</div>
 <!-- //header-bottom -->
 		</div>
 	</div>
+
+	<div>
+		<form id="carga" name="carga" action="/agregarComentario{{noticia.id}}" method="post">
+			<div class="form-group">
+				<label for="titulo">Inserte Titulo</label>
+				<input type="text" class="form-control" name="titulo" id="titulo" placeholder="Inserte Titulo">
+			</div>
+			<div class="form-group">
+				<label for="comentario">Inserte Comentario</label>
+				<input type="text" class="form-control" name="comentario" id="comentario" placeholder="Inserte comentario">
+			</div>
+			<button type="submit" class="btn btn-primary">Insertar</button>
+		</form>
+	</div>
+	<br>
 <!-- //banner-body -->
 <!-- footer -->
 	<div class="footer">
